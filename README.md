@@ -139,3 +139,23 @@ func main() {
 
 Hashable types are those which have a predictable memory layout. See struct comparison example above for something
 that doesn't.
+
+### Equals function
+
+Types can be `Equatable` by implementing the `Equals` function.
+
+```go
+package main
+
+type cmp struct {
+    field1 string
+    field2 []string
+}
+
+func (c cmp) Equals(other cmp) bool {
+    return c.field1 == other.field1 && len(c.field2) == len(other.field2) 
+} 
+```
+
+`==` and `!=` don't work anymore. `Equals` needs to be called directly. Using more granular types and type 
+composition is preferable to implementing `Equals`.
