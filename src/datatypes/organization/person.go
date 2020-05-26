@@ -6,14 +6,15 @@ import (
 	"strings"
 )
 
-type Identifiable interface {
-	ID() string
-}
-
 type TwitterHandler string
 
 func (th TwitterHandler) RedirectUrl() string {
-	return ""
+	cleanHandler := strings.TrimPrefix(string(th), "@")
+	return fmt.Sprintf("https://www.twitter.com/%s", cleanHandler)
+}
+
+type Identifiable interface {
+	ID() string
 }
 
 type Person struct {

@@ -11,5 +11,6 @@ func main() {
 		println(err.Error())
 	} else {
 		println(p.TwitterHandler())
+		println(p.TwitterHandler().RedirectUrl())
 	}
 }
