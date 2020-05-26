@@ -17,18 +17,22 @@ type Identifiable interface {
 	ID() string
 }
 
+type Name struct {
+	first string
+	last string
+}
+
+func (n Name) FullName() string {
+	return fmt.Sprintf("%s, %s", n.last, n.first)
+}
+
 type Person struct {
-	firstName string
-	lastName string
+	Name
 	twitterHandler TwitterHandler
 }
 
 func NewPerson(firstName, lastName string) Person {
-	return Person {firstName: firstName, lastName: lastName}
-}
-
-func (p *Person) FullName() string {
-	return fmt.Sprintf("%s, %s", p.lastName, p.firstName)
+	return Person {Name: Name {first: firstName, last: lastName}}
 }
 
 func (p *Person) ID() string {
