@@ -10,7 +10,11 @@ type Identifiable interface {
 	ID() string
 }
 
-type TwitterHandler = string
+type TwitterHandler string
+
+func (th TwitterHandler) RedirectUrl() string {
+	return ""
+}
 
 type Person struct {
 	firstName string
@@ -33,7 +37,7 @@ func (p *Person) ID() string {
 func (p *Person) SetTwitterHandler(twitterHandler TwitterHandler) error {
 	if len(twitterHandler) == 0 {
 		p.twitterHandler = twitterHandler
-	} else if !strings.HasPrefix(twitterHandler, "@") {
+	} else if !strings.HasPrefix(string(twitterHandler), "@") {
 		return errors.New("twitter handler must start with a @")
 	} else if len(twitterHandler) < 2 {
 		return errors.New("twitter handler can't be a bare @")
