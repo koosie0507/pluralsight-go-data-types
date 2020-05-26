@@ -117,3 +117,20 @@ func main() {
 	println("Does Go think types with same memory layout, but different names are equal?", cmp1 == cmp2)
 }
 ```
+
+### Zero Value Comparison
+
+It's possible to check if something is equal to the empty value for a given type.
+
+```go
+package main
+
+type cmp struct {
+	field1 string
+}
+
+func main() {
+    a := cmp {field1: "a"}
+    println(a == (cmp{}))
+}
+```
