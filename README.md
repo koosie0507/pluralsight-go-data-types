@@ -48,3 +48,23 @@ func (s *S) Method() {
     s.A.Method()
 }
 ```
+
+## Comparison Gotchas
+
+```go
+package main
+
+type Cmp1 struct {
+	field string
+}
+
+type Cmp2 struct {
+	field string
+}
+
+func main() {
+	cmp1 := Cmp1{field: "a"}
+	cmp2 := Cmp2{field: "a"}
+    // compiler error
+	println("Does Go think types with same memory layout, but different names are equal?", cmp1 == cmp2) 
+```
