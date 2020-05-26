@@ -11,9 +11,11 @@ type Cmp struct {
 
 func main() {
 	ssn := organization.NewSocialSecurityNumber("123-45-6789")
-	eu := organization.NewEuropeanUnionIdentifier("123-45-6789", "Germany")
+	eu1 := organization.NewEuropeanUnionIdentifier("123-45-6789", "Germany")
+	eu2 := organization.NewEuropeanUnionIdentifier("123-45-6789", "Germany")
 
-	println(ssn == eu)
+	println(eu1 == eu2)
 	fmt.Printf("%T\n", ssn)
-	fmt.Printf("%T\n", eu)
+	fmt.Printf("%T\n", eu1)
+	fmt.Printf("%T\n", eu2)
 }
