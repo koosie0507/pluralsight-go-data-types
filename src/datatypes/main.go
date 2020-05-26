@@ -9,5 +9,7 @@ func main() {
 	err := p.SetTwitterHandler("@abc")
 	if err != nil {
 		println(err.Error())
+	} else {
+		println(p.TwitterHandler())
 	}
 }
