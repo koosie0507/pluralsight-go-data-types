@@ -1,6 +1,9 @@
 package organization
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 type Identifiable interface {
 	ID() string
@@ -38,6 +41,13 @@ func (eui europeanUnionIdentifier) Country() string {
 	return fmt.Sprintf("EU %s", eui.country)
 }
 
-func NewEuropeanUnionIdentifier(id, country string) Citizen {
-	return europeanUnionIdentifier{id: id, country: country}
+func NewEuropeanUnionIdentifier(id interface{}, country string) Citizen {
+	switch v := id.(type) {
+	case string:
+		return europeanUnionIdentifier{id: v, country: country}
+	case int:
+		return europeanUnionIdentifier{id: strconv.Itoa(v), country: country}
+	default:
+		panic("invalid type for initializing an EU identifier")
+	}
 }

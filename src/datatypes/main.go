@@ -10,7 +10,7 @@ type Cmp struct {
 }
 
 func main() {
-	p := organization.NewPerson("Gicu", "Piticu", organization.NewSocialSecurityNumber("123-45-6789"))
+	p := organization.NewPerson("Gicu", "Piticu", organization.NewEuropeanUnionIdentifier(3, "France"))
 
 	cmp1 := Cmp{field: "a"}
 	cmp2 := Cmp{field: "a"}
