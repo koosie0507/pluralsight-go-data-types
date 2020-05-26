@@ -10,16 +10,13 @@ type Cmp struct {
 }
 
 func main() {
+	p := organization.NewPerson("Gicu", "Piticu", organization.NewSocialSecurityNumber("123-45-6789"))
+
 	cmp1 := Cmp{field: "a"}
 	cmp2 := Cmp{field: "a"}
-	println(cmp1 == cmp2)
+	fmt.Println(cmp1 == cmp2)
 
-	ssn := organization.NewSocialSecurityNumber("123-45-6789")
-	eu1 := organization.NewEuropeanUnionIdentifier("123-45-6789", "Germany")
-	eu2 := organization.NewEuropeanUnionIdentifier("123-45-6789", "Germany")
-
-	println(eu1 == eu2)
-	fmt.Printf("%T\n", ssn)
-	fmt.Printf("%T\n", eu1)
-	fmt.Printf("%T\n", eu2)
+	peopleByName := map[organization.Name][]organization.Person{}
+	peopleByName[p.Name] = []organization.Person{p}
+	fmt.Println(peopleByName)
 }

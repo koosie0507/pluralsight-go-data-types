@@ -134,3 +134,8 @@ func main() {
     println(a == (cmp{}))
 }
 ```
+
+### Hashing
+
+Hashable types are those which have a predictable memory layout. See struct comparison example above for something
+that doesn't.
