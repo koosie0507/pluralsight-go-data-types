@@ -1,6 +1,10 @@
 package organization
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+	"strings"
+)
 
 type Identifiable interface {
 	ID() string
@@ -9,6 +13,7 @@ type Identifiable interface {
 type Person struct {
 	firstName string
 	lastName string
+	twitterHandler string
 }
 
 func NewPerson(firstName, lastName string) Person {
@@ -21,4 +26,16 @@ func (p Person) FullName() string {
 
 func (p Person) ID() string {
 	return "12345"
+}
+
+func (p Person) SetTwitterHandler(twitterHandler string) error {
+	if len(twitterHandler) == 0 {
+		p.twitterHandler = twitterHandler
+	} else if !strings.HasPrefix(twitterHandler, "@") {
+		return errors.New("twitter handler must start with a @")
+	} else if len(twitterHandler) < 2 {
+		return errors.New("twitter handler can't be a bare @")
+	}
+	p.twitterHandler = twitterHandler
+	return nil
 }
